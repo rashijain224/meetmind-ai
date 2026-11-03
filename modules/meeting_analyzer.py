@@ -7,13 +7,11 @@ from google.genai import types
 
 load_dotenv()
 
-api_key = os.getenv("GEMINI_API_KEY")
-
 try:
     import streamlit as st
-    api_key = api_key or st.secrets["GEMINI_API_KEY"]
+    api_key = st.secrets["GEMINI_API_KEY"]
 except Exception:
-    pass
+    api_key = os.getenv("GEMINI_API_KEY")
 
 client = genai.Client(api_key=api_key)
 
